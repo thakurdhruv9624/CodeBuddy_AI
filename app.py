@@ -9,15 +9,19 @@ genai.configure(api_key="AIzaSyBs4WrcJn4WS8Lo87Aw_aaH9j5c4l7lmhs")
 
 # मॉडल का नाम 'gemini-1.5-flash' रखें, यह सबसे स्टेबल है
 # यह अपने आप सही मॉडल ढूंढ लेगा
+# मॉडल की लिस्ट निकालें
 model_list = genai.list_models()
+
+active_model = 'models/gemini-1.5-flash' # डिफ़ॉल्ट मॉडल
+
 for m in model_list:
     if 'generateContent' in m.supported_generation_methods:
         active_model = m.name
         break
 
+# यह लाइनें एकदम बाईं तरफ (left side) होनी चाहिए, किसी लूप के अंदर नहीं
 model = genai.GenerativeModel(active_model)
 print(f"बधाई हो! हम इस मॉडल का इस्तेमाल कर रहे हैं: {active_model}")
-
 @app.route('/')
 def home():
     return render_template('index.html')
