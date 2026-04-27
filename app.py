@@ -3,8 +3,9 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-# आपकी API Key यहाँ पहले से है, मैंने बस उसे सुरक्षित फॉर्मेट में रखा है
+import os  # <--- ये वाली लाइन सबसे ऊपर होनी चाहिए
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+# ... बाकी का कोड ...
 
 
 # मॉडल का नाम 'gemini-1.5-flash' रखें, यह सबसे स्टेबल है
